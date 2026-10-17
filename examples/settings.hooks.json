@@ -1,0 +1,23 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"~/scripts/hooks/dotfiles_hook.py\"",
+            "shell": "bash",
+            "statusMessage": "dotfilesをGitHubに送っています...",
+            "async": true
+          },
+          {
+            "type": "command",
+            "command": "python \"~/scripts/hooks/skill_doc_hook.py\"",
+            "shell": "bash"
+          }
+        ]
+      }
+    ]
+  }
+}
