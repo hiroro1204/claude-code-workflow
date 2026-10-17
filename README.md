@@ -48,7 +48,23 @@ Claude Code と Cursor が同じルールで動くこと、作ったスキルの
 - テンプレートから作った直後の最初のデプロイが、Secrets を登録する前に動いて失敗する → 登録後に失敗を見つけて自動で再実行
 - Git Bash が `/home/...` のようなパスを Windows のパスに書き換えてしまう → `MSYS_NO_PATHCONV=1` で止める
 
-## 4. うまくいかなかった挑戦
+## 4. 実装・確認・管理画面の操作
+
+ふだんのコーディングと WordPress の作業では、次のように AI を使っています。
+
+1. **実装**：Cursor に入れたコーディングルールをもとに、Figma の MCP サーバーで読み込んだデザインデータ（またはスクリーンショット）からコーディングさせる
+2. **確認・微調整**：Playwright MCP でブラウザを開いて表示を確かめながら、自分でエディタで直すか、AI に指示して直す
+3. **管理画面の操作**：Playwright MCP で WordPress の管理画面を操作し、プラグインの設定や、SEO プラグインでのタイトル・ディスクリプションの入力を行う
+
+安全のために決めていること：
+
+- 管理画面へのログインは自分で行い、ログインした状態の画面を AI に渡す（パスワードを AI に渡さない）
+- 作業はテスト環境で行うことが基本。本番サイトで行うときは、バックアップを取ってから
+- 操作の前に Claude と一緒に作業の計画を立て、その計画を自分で確認してから実行する
+
+ほとんどの作業は計画どおりに進みます。フォームのプラグインの設定では、フォームの ID がうまく入らないことがありました。
+
+## 5. うまくいかなかった挑戦
 
 Figma の無料プランでは、AI がデザインデータを読み込める回数が月6回までに制限されています。そこで、Figma プラグイン経由で制限なく読み込める公開ツール「Figma MCP Bridge」を、記事を参考に自分用に改造しようとしました（選んだデザインの URL をパネルに表示する、Figma に設定されたリンク先を読み取る、の2つ）。
 
@@ -58,4 +74,4 @@ Bridge を通して AI とつなぐところまではできましたが、選ん
 
 ## 使っている道具
 
-Claude Code ／ Cursor ／ GitHub・GitHub Actions ／ Obsidian ／ Notion ／ Toggl Track ／ Google Apps Script ／ Python ／ Bash ／ PowerShell
+Claude Code ／ Cursor ／ Figma MCP ／ Playwright MCP ／ GitHub・GitHub Actions ／ Obsidian ／ Notion ／ Toggl Track ／ Google Apps Script ／ Python ／ Bash ／ PowerShell
